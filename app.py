@@ -72,14 +72,25 @@ st.info("The video below is being processed in real-time. Signs detected will be
 
 # THE MAGIC COMPONENT
 # rtc_configuration is needed for cloud deployment (STUN server)
+# Define the "Phone Book" of internet connections (STUN Servers)
+RTC_CONFIGURATION = {
+    "iceServers": [
+        {"urls": ["stun:stun.l.google.com:19302"]},
+        {"urls": ["stun:stun1.l.google.com:19302"]},
+        {"urls": ["stun:stun2.l.google.com:19302"]},
+        {"urls": ["stun:stun3.l.google.com:19302"]},
+        {"urls": ["stun:stun4.l.google.com:19302"]},
+    ]
+}
+
+# (Optional Pro Tip) If it STILL fails, you need a TURN server (Relay).
+# You can get a free one from Twilio, but try the list above first.
+
 webrtc_streamer(
     key="sign-detection",
     video_processor_factory=VideoProcessor,
-    media_stream_constraints={"video": True, "audio": False},
-    rtc_configuration={
-        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
-    }
+    rtc_configuration=RTC_CONFIGURATION,  # <--- Use the new config here
+    media_stream_constraints={"video": True, "audio": False}
 )
-
 st.divider()
 st.markdown("**Note:** If the video freezes, refresh the page. Cloud GPU latency may vary.")
