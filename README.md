@@ -35,7 +35,7 @@ The system is built upon a modular Python stack:
 
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/RealSign.git](https://github.com/YOUR_USERNAME/RealSign.git)
+    git clone [https://github.com/johnwesb/RealSign.git](https://github.com/johnwesb/RealSign.git)
     cd RealSign
     ```
 
